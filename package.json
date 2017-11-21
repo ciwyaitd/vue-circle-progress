@@ -7,11 +7,12 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production webpack --progress --hide-modules",
-    "demo": "NODE_ENV=development webpack-dev-server --open --hot"
+    "demo": "NODE_ENV=development webpack-dev-server --open --hot",
+    "build-demo": "NODE_ENV=development webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+"
+    "url": "git+git@github.com:ciwyaitd/vue-circle-progress.git"
   },
   "keywords": [
     "vue",
@@ -23,9 +24,9 @@
     "vue-circle-progress"
   ],
   "bugs": {
-    "url": ""
+    "url": "https://github.com/ciwyaitd/vue-circle-progress/issues"
   },
-  "homepage": "",
+  "homepage": "https://ciwyaitd.github.io/vue-circle-progress/",
   "engines": {
     "node": ">= 5.0.0",
     "npm": ">= 3.0.0"

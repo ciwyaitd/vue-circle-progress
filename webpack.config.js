@@ -61,7 +61,6 @@ var demo = merge(config, {
     }
 })
 
-
 if (process.env.NODE_ENV === 'production') {
     module.exports = [build]
 } else {
