@@ -2,7 +2,7 @@
     <div
         class="circle-progress"
         :style="{
-            height: size + 'px'
+            height: size + 'px',
         }">
         <svg
             :width="svgSize"
@@ -14,7 +14,7 @@
 
             <circle
                 class="circle-fill"
-                :r="radius - strokeWidth / 2"
+                :r="radius - thick / 2"
                 cx="50%"
                 cy="50%"
                 :fill="fill"
@@ -25,9 +25,9 @@
                 cx="50%"
                 cy="50%"
                 fill="transparent"
-                :stroke-width="strokeWidth"
+                :stroke-width="thick"
                 :stroke-dasharray="perimeter"
-                :stroke="strokeBg"
+                :stroke="bg"
                 stroke-dashoffset="0"
                 :style="{
                     transition: transition,
@@ -45,9 +45,9 @@
                 cx="50%"
                 cy="50%"
                 fill="transparent"
-                :stroke-width="strokeWidth"
+                :stroke-width="thick"
                 :stroke-dasharray="perimeter"
-                :stroke="strokeClr"
+                :stroke="fg"
                 stroke-dashoffset="0"
             ></circle>
         </svg>
@@ -77,12 +77,12 @@
                 type: String,
                 default: 'transparent'
             },
-            strokeWidth: {
+            thick: {
                 type: Number,
                 default: 0
             },
-            strokeBg: String,
-            strokeClr: String,
+            bg: String,
+            fg: String,
             beginAt: {
                 type: String,
                 default: 'top'
@@ -105,10 +105,11 @@
                 return this.radius * 2 * Math.PI
             },
             percentPerimeter() {
-                return (1 - Number(this.percent) / 100) * this.perimeter
+                let percent = this.percent > 0 ? Math.min(100, this.percent) : 0
+                return (1 - Number(percent) / 100) * this.perimeter
             },
             radius() {
-                return this.svgSize / 2 - this.strokeWidth / 2
+                return this.svgSize / 2 - this.thick / 2
             },
             transition() {
                 return 'stroke-dashoffset ' + this.duration + 'ms ' + this.timingFunction
@@ -126,6 +127,7 @@
     .circle-progress {
         display: inline-block;
         position: relative;
+        line-height: 1;
     }
 
     .circle-svg {
